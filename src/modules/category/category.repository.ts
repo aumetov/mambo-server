@@ -1,12 +1,12 @@
 import {Injectable} from '@nestjs/common';
-import { Category, CategoryDocument } from './category.entity';
+import { CategoryDocument } from './category.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CategoryCreateRequestDto, CategoryUpdateRequestDto } from './category.interfaces';
 
 interface ICategoryRepository {
     createOne(category: CategoryDocument): Promise<CategoryDocument>
-    updateOne(id: string, invoice: CategoryDocument): Promise<CategoryDocument>
+    updateOne(id: string, category: CategoryDocument): Promise<CategoryDocument>
     getAll(req: any): Promise<any>
     findOneById(id: string): Promise<CategoryDocument>
     deleteOne(id: string): Promise<any>

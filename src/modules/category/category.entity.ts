@@ -6,8 +6,14 @@ export type CategoryDocument = mongoose.Document & {
 };
 
 export const categorySchema = new mongoose.Schema({
-    title: String,
-    displayTitle: String,
+    title: {
+        type: String,
+        required: true
+    },
+    displayTitle: {
+        type: String,
+        required: true
+    },
 }, { timestamps: true });
 
 export const Category = mongoose.model<CategoryDocument>("Category", categorySchema);

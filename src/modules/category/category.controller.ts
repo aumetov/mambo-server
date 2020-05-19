@@ -1,8 +1,10 @@
-import {Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UsePipes, ValidationPipe} from '@nestjs/common';
 import {CategoryService} from './category.service';
 import { CategoryDocument } from './category.entity';
+import { CategoryCreateRequestDto, CategoryUpdateRequestDto } from './category.interfaces';
 
 @Controller('category')
+@UsePipes(new ValidationPipe())
 export class CategoryController {
   constructor(
     private readonly service: CategoryService
@@ -24,12 +26,12 @@ export class CategoryController {
   }
 
   @Post()
-  createOne(@Body() dto: CategoryDocument): Promise<any> {
+  createOne(@Body() dto: CategoryCreateRequestDto): Promise<any> {
     return this.service.createOne(dto)
   }
 
   @Put(':id')
-  updateOne(@Param('id') id: string, @Body() dto: CategoryDocument): Promise<any> {
+  updateOne(@Param('id') id: string, @Body() dto: CategoryUpdateRequestDto): Promise<any> {
     return this.service.updateOne(id, dto)
   }
 

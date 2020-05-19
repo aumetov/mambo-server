@@ -1,6 +1,7 @@
 import {Injectable} from '@nestjs/common'
 import { CategoryRepository } from './category.repository';
 import { CategoryDocument } from './category.entity';
+import { CategoryCreateRequestDto, CategoryUpdateRequestDto } from './category.interfaces';
 
 interface ICategoryService {
     createOne(invoice: CategoryDocument): Promise<CategoryDocument>
@@ -21,12 +22,12 @@ export class CategoryService implements ICategoryService {
     return this.repository.getAll(filters)
   }
 
-  createOne(invoice: CategoryDocument): Promise<CategoryDocument> {
-    return this.repository.createOne(invoice)
+  createOne(category: CategoryCreateRequestDto): Promise<CategoryDocument> {
+    return this.repository.createOne(category)
   }
 
-  updateOne(id: string, invoice: CategoryDocument): Promise<CategoryDocument> {
-    return this.repository.updateOne(id, invoice);
+  updateOne(id: string, category: CategoryUpdateRequestDto): Promise<CategoryDocument> {
+    return this.repository.updateOne(id, category);
   }
 
   deleteOne(id: string): Promise<void> {

@@ -4,8 +4,8 @@ import { CategoryDocument } from './category.entity';
 import { CategoryCreateRequestDto, CategoryUpdateRequestDto } from './category.interfaces';
 
 interface ICategoryService {
-    createOne(shop: CategoryDocument): Promise<CategoryDocument>
-    updateOne(id: string, shop: CategoryDocument)
+    createOne(category: CategoryDocument): Promise<CategoryDocument>
+    updateOne(id: string, category: CategoryDocument)
     getAll(filters: any): Promise<any>
     findOneById(id: string): Promise<any>
     deleteOne(id: string): Promise<void>

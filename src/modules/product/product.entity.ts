@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-import { productOptionType } from 'src/consts/types';
 
 export type ProductDocument = mongoose.Document & {
     title: string;
@@ -9,21 +8,11 @@ export type ProductDocument = mongoose.Document & {
     salePrice: number;
     categories: string[];
     shopId: string;
-    options: productOptionType[];
+    productImages: string[];
     sizes: string[];
+    colors: string[];
     sex: string;
 };
-
-const optionSchema = new mongoose.Schema({
-    color: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    }
-});
 
 export const productSchema = new mongoose.Schema({
     title: {
@@ -54,11 +43,15 @@ export const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    options: [{
-        type: optionSchema,
+    productImages: [{
+        type: String,
         required: true
     }],
     sizes: [{
+        type: String,
+        required: true
+    }],
+    colors: [{
         type: String,
         required: true
     }],

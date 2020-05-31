@@ -1,5 +1,4 @@
 import { IsNotEmpty, IsNumber, IsString, IsOptional, IsArray, IsIn } from "class-validator";
-import { productOptionType } from "src/consts/types";
 
 export class ProductCreateRequestDto {
     @IsString()
@@ -32,7 +31,7 @@ export class ProductCreateRequestDto {
 
     @IsArray()
     @IsNotEmpty()
-    options: productOptionType[]
+    colors: string[]
 
     @IsArray()
     @IsNotEmpty()
@@ -74,7 +73,11 @@ export class ProductUpdateRequestDto {
 
     @IsArray()
     @IsNotEmpty()
-    options: productOptionType[]
+    productImages: string[]
+
+    @IsArray()
+    @IsNotEmpty()
+    colors: string[]
 
     @IsArray()
     @IsNotEmpty()

@@ -1,7 +1,7 @@
 import {Injectable} from '@nestjs/common'
 import { ProductRepository } from './product.repository';
 import { ProductDocument } from './product.entity';
-import { ProductCreateRequestDto, ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
+import { ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
 import { ImageUploadService } from './image-upload.service';
 
 interface IProductService {

@@ -1,8 +1,7 @@
-import { Controller, Get, UsePipes, ValidationPipe, Body, Param, NotFoundException, Post, Put, Delete, UseInterceptors, UploadedFiles, UploadedFile, Query } from '@nestjs/common';
-import {FileInterceptor, FilesInterceptor, FileFieldsInterceptor} from '@nestjs/platform-express';
+import { Controller, Get, UsePipes, ValidationPipe, Body, Param, NotFoundException, Post, Put, Delete, UseInterceptors, UploadedFiles } from '@nestjs/common';
+import {FilesInterceptor} from '@nestjs/platform-express';
 import { ProductService } from './product.service';
-import { ProductCreateRequestDto, ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
-import * as fs from 'fs';
+import { ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
 
 @Controller('product')
 @UsePipes(new ValidationPipe())

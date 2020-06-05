@@ -1,6 +1,8 @@
-import { Controller, Get, UsePipes, ValidationPipe, Body, Param, NotFoundException, Post, Put, Delete } from '@nestjs/common';
+import { Controller, Get, UsePipes, ValidationPipe, Body, Param, NotFoundException, Post, Put, Delete, UseInterceptors, UploadedFiles, UploadedFile, Query } from '@nestjs/common';
+import {FileInterceptor, FilesInterceptor, FileFieldsInterceptor} from '@nestjs/platform-express';
 import { ProductService } from './product.service';
-import { ProductCreateRequestDto, ProductUpdateRequestDto } from './product.interfaces';
+import { ProductCreateRequestDto, ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
+import * as fs from 'fs';
 
 @Controller('product')
 @UsePipes(new ValidationPipe())
@@ -23,9 +25,10 @@ export class ProductController {
         return product
     }
 
-    @Post()
-    createOne(@Body() dto: ProductCreateRequestDto) {
-        return this.service.createOne(dto)
+    @Post('/')
+    @UseInterceptors(FilesInterceptor('files'))
+    async createOne(@UploadedFiles() files: any, @Body() body: ProductCreateBodyDto) {
+        return this.service.createOne(body)
     }
 
     @Put(':id')

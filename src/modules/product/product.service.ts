@@ -1,10 +1,11 @@
 import {Injectable} from '@nestjs/common'
 import { ProductRepository } from './product.repository';
 import { ProductDocument } from './product.entity';
-import { ProductCreateRequestDto, ProductUpdateRequestDto } from './product.interfaces';
+import { ProductCreateRequestDto, ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
+import { ImageUploadService } from './image-upload.service';
 
 interface IProductService {
-    createOne(product: ProductDocument): Promise<ProductDocument>
+    createOne(product: ProductCreateBodyDto): Promise<ProductDocument>
     updateOne(id: string, product: ProductDocument)
     getAll(filters: any): Promise<any>
     findOneById(id: string): Promise<any>
@@ -15,6 +16,7 @@ interface IProductService {
 export class ProductService implements IProductService {
   constructor(
     private readonly repository: ProductRepository,
+    private readonly imageUploadService: ImageUploadService
   ) {
   }
 
@@ -22,8 +24,10 @@ export class ProductService implements IProductService {
     return this.repository.getAll(filters)
   }
 
-  createOne(product: ProductCreateRequestDto): Promise<ProductDocument> {
-    return this.repository.createOne(product)
+  createOne(product: ProductCreateBodyDto): Promise<ProductDocument> {
+    // upload images to s3 and update product info body
+    //this.imageUploadService.upload(images)
+    return this.repository.createOne(product.productInfo[0])
   }
 
   updateOne(id: string, product: ProductUpdateRequestDto): Promise<ProductDocument> {

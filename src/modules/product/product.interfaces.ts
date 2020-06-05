@@ -1,5 +1,12 @@
 import { IsNotEmpty, IsNumber, IsString, IsOptional, IsArray, IsIn } from "class-validator";
 
+export class ProductCreateBodyDto {
+    files: any
+
+    @IsNotEmpty()
+    productInfo: ProductCreateRequestDto[]
+}
+
 export class ProductCreateRequestDto {
     @IsString()
     @IsNotEmpty()
@@ -9,9 +16,13 @@ export class ProductCreateRequestDto {
     @IsOptional()
     description: string
 
-    @IsString()
+    @IsArray()
     @IsOptional()
-    productThumbnail: string
+    productThumbnail: any
+
+    @IsArray()
+    @IsOptional()
+    productImages: any
 
     @IsNumber()
     @IsNotEmpty()

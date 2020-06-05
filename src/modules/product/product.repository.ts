@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
 import { ProductCreateRequestDto, ProductUpdateRequestDto } from './product.interfaces';
 
 interface IProductRepository {
-    createOne(product: ProductDocument): Promise<ProductDocument>
+    createOne(product: ProductCreateRequestDto): Promise<ProductDocument>
     updateOne(id: string, product: ProductDocument): Promise<ProductDocument>
     getAll(req: any): Promise<any>
     findOneById(id: string): Promise<ProductDocument>

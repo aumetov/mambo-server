@@ -3,3 +3,9 @@ export enum Gender {
     FEMALE = "FEMALE",
     UNISEX = "UNISEX"
 }
+
+export enum GenderDisplayNames {
+    MALE = "Мужской",
+    FEMALE = "Женский",
+    UNISEX = "Юнисекс"
+}

@@ -20,7 +20,7 @@ export const shopEmployeeInfoSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: Roles,
+        enum: Object.keys(Roles),
         required: true
     }
 });

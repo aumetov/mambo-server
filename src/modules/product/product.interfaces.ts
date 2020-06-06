@@ -1,11 +1,7 @@
-import { IsNotEmpty, IsNumber, IsString, IsOptional, IsArray, IsIn } from "class-validator";
-
-export class ProductCreateBodyDto {
-    files: any
-
-    @IsNotEmpty()
-    productInfo: ProductCreateRequestDto[]
-}
+import { IsNotEmpty, IsNumber, IsString, IsOptional, IsArray, IsIn, IsEnum } from "class-validator";
+import { Gender } from "src/consts/gender";
+import { Colors } from "src/consts/colors";
+import { Sizes } from "src/consts/sizes";
 
 export class ProductCreateRequestDto {
     @IsString()
@@ -42,15 +38,14 @@ export class ProductCreateRequestDto {
 
     @IsArray()
     @IsNotEmpty()
-    colors: string[]
+    colors: Colors[]
 
     @IsArray()
     @IsNotEmpty()
-    sizes: string[]
+    sizes: Sizes[]
 
-    @IsIn(['Male', 'Female'])
     @IsNotEmpty()
-    sex: string
+    sex: Gender
 }
 
 export class ProductUpdateRequestDto {
@@ -87,14 +82,24 @@ export class ProductUpdateRequestDto {
     productImages: string[]
 
     @IsArray()
+    @IsEnum(Colors)
     @IsNotEmpty()
-    colors: string[]
+    colors: Colors[];
 
     @IsArray()
+    @IsEnum(Sizes)
     @IsNotEmpty()
-    sizes: string[]
+    sizes: Sizes[];
 
-    @IsIn(['Male', 'Female'])
+    @IsString()
+    @IsEnum(Gender)
     @IsNotEmpty()
-    sex: string
+    sex: Gender
+}
+
+export class ProductCreateBodyDto {
+    files: any
+
+    @IsNotEmpty()
+    productInfo: ProductCreateRequestDto
 }

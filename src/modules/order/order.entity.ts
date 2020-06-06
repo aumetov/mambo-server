@@ -25,12 +25,12 @@ const orderProductSchema = new mongoose.Schema({
     },
     color: {
         type: String,
-        enum: Colors,
+        enum: Object.keys(Colors),
         required: true
     },
     size: {
         type: String,
-        enum: Sizes,
+        enum: Object.keys(Sizes),
         required: true
     },
     qty: {

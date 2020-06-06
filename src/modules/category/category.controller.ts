@@ -2,7 +2,7 @@ import {Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseP
 import {CategoryService} from './category.service';
 import { CategoryCreateRequestDto, CategoryUpdateRequestDto } from './category.interfaces';
 
-@Controller('category')
+@Controller('categories')
 @UsePipes(new ValidationPipe())
 export class CategoryController {
   constructor(

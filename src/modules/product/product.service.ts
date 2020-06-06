@@ -6,7 +6,7 @@ import { ImageUploadService } from './image-upload.service';
 
 interface IProductService {
     createOne(product: ProductCreateBodyDto): Promise<ProductDocument>
-    updateOne(id: string, product: ProductDocument)
+    updateOne(id: string, product: ProductUpdateRequestDto)
     getAll(filters: any): Promise<any>
     findOneById(id: string): Promise<any>
     deleteOne(id: string): Promise<void>
@@ -27,7 +27,7 @@ export class ProductService implements IProductService {
   createOne(product: ProductCreateBodyDto): Promise<ProductDocument> {
     // upload images to s3 and update product info body
     //this.imageUploadService.upload(images)
-    return this.repository.createOne(product.productInfo[0])
+    return this.repository.createOne(product.productInfo)
   }
 
   updateOne(id: string, product: ProductUpdateRequestDto): Promise<ProductDocument> {

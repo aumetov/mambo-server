@@ -6,7 +6,7 @@ import { ProductCreateRequestDto, ProductUpdateRequestDto } from './product.inte
 
 interface IProductRepository {
     createOne(product: ProductCreateRequestDto): Promise<ProductDocument>
-    updateOne(id: string, product: ProductDocument): Promise<ProductDocument>
+    updateOne(id: string, product: ProductUpdateRequestDto): Promise<ProductDocument>
     getAll(req: any): Promise<any>
     findOneById(id: string): Promise<ProductDocument>
     deleteOne(id: string): Promise<any>
@@ -20,11 +20,12 @@ constructor(@InjectModel('Products') private readonly productModel:Model<Product
   }
 
   async createOne(product: ProductCreateRequestDto): Promise<ProductDocument> {
-    const newProduct = new this.productModel(product);
+    //need to be fixed: product must be object not json 
+    const newProduct = new this.productModel(JSON.parse(`${product}`));
     return await newProduct.save();
   }
 
-  async updateOne(id: string, product: ProductUpdateRequestDto): Promise<any> {
+  async updateOne(id: string, product: ProductUpdateRequestDto): Promise<ProductDocument> {
     return await this.productModel.findByIdAndUpdate(id, product, {new: true});
   }
 

@@ -1,5 +1,7 @@
 import * as mongoose from 'mongoose';
 import { orderProductType } from 'src/consts/types';
+import { Sizes } from 'src/consts/sizes';
+import { Colors } from 'src/consts/colors';
 
 export type OrderDocument = mongoose.Document & {
     userId: string
@@ -23,10 +25,12 @@ const orderProductSchema = new mongoose.Schema({
     },
     color: {
         type: String,
+        enum: Colors,
         required: true
     },
     size: {
         type: String,
+        enum: Sizes,
         required: true
     },
     qty: {

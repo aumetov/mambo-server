@@ -1,6 +1,8 @@
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { SALT_WORK_FACTOR } from '../../consts/bcrypt-salt';
+import { shopEmployeeInfo } from 'src/consts/types';
+import { Roles } from 'src/consts/roles';
 
 export type UserDocument = mongoose.Document & {
     firstName: string;
@@ -8,7 +10,20 @@ export type UserDocument = mongoose.Document & {
     email: string;
     phoneNumber: string;
     password: string;
+    shopEmployeeInfo: shopEmployeeInfo;
 };
+
+export const shopEmployeeInfoSchema = new mongoose.Schema({
+    shopId: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        enum: Roles,
+        required: true
+    }
+});
 
 export const userSchema = new mongoose.Schema({
     firstName: {
@@ -30,6 +45,10 @@ export const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    shopEmployeeInfo: {
+        type: shopEmployeeInfoSchema,
+        required: false
     }
 }, { timestamps: true });
 

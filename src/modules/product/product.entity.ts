@@ -1,4 +1,7 @@
 import * as mongoose from 'mongoose';
+import { Sizes } from 'src/consts/sizes';
+import { Colors } from 'src/consts/colors';
+import { Gender } from 'src/consts/gender';
 
 export type ProductDocument = mongoose.Document & {
     title: string;
@@ -9,8 +12,8 @@ export type ProductDocument = mongoose.Document & {
     categories: string[];
     shopId: string;
     productImages: string[];
-    sizes: string[];
-    colors: string[];
+    sizes: Sizes[];
+    colors: Colors[];
     sex: string;
 };
 
@@ -49,15 +52,17 @@ export const productSchema = new mongoose.Schema({
     }],
     sizes: [{
         type: String,
+        enum: Sizes,
         required: true
     }],
     colors: [{
         type: String,
+        enum: Colors,
         required: true
     }],
     sex: {
         type: String,
-        enum: ['Male', 'Female'],
+        enum: Gender,
         required: true
     }
 }, { timestamps: true });

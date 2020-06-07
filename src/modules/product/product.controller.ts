@@ -1,7 +1,7 @@
 import { Controller, Get, UsePipes, ValidationPipe, Body, Param, NotFoundException, Post, Put, Delete, UseInterceptors, UploadedFiles } from '@nestjs/common';
 import {FilesInterceptor} from '@nestjs/platform-express';
 import { ProductService } from './product.service';
-import { ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
+import { ProductUpdateRequestDto, ProductCreateBodyDto, ProductFiltersDto } from './product.interfaces';
 
 @Controller('product')
 @UsePipes(new ValidationPipe())
@@ -11,7 +11,7 @@ export class ProductController {
     ){}
 
     @Get()
-    getAll(@Body() filters: any) {
+    getAll(@Body() filters: ProductFiltersDto) {
         return this.service.getAll(filters)
     }
 

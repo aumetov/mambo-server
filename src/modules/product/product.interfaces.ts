@@ -2,6 +2,7 @@ import { IsNotEmpty, IsNumber, IsString, IsOptional, IsArray, IsIn, IsEnum } fro
 import { Gender } from "src/consts/gender";
 import { Colors } from "src/consts/colors";
 import { Sizes } from "src/consts/sizes";
+import { priceRange } from "src/consts/types";
 
 export class ProductCreateRequestDto {
     @IsString()
@@ -102,4 +103,26 @@ export class ProductCreateBodyDto {
 
     @IsNotEmpty()
     productInfo: ProductCreateRequestDto
+}
+
+export class ProductFiltersDto {
+    @IsArray()
+    @IsOptional()
+    categories: string[]
+
+    @IsArray()
+    @IsOptional()
+    colors: Colors[]
+
+    @IsArray()
+    @IsOptional()
+    sizes: Sizes
+
+    @IsString()
+    @IsEnum(Gender)
+    @IsOptional()
+    sex: Gender
+
+    @IsOptional()
+    priceRange: priceRange
 }

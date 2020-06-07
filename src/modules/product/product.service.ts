@@ -1,7 +1,7 @@
 import {Injectable} from '@nestjs/common'
 import { ProductRepository } from './product.repository';
 import { ProductDocument } from './product.entity';
-import { ProductUpdateRequestDto, ProductCreateBodyDto } from './product.interfaces';
+import { ProductUpdateRequestDto, ProductCreateBodyDto, ProductFiltersDto } from './product.interfaces';
 import { ImageUploadService } from './image-upload.service';
 
 interface IProductService {
@@ -20,7 +20,7 @@ export class ProductService implements IProductService {
   ) {
   }
 
-  getAll(filters: any): Promise<any> {
+  getAll(filters: ProductFiltersDto): Promise<any> {
     return this.repository.getAll(filters)
   }
 

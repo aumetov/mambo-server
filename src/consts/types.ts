@@ -16,3 +16,8 @@ export type shopEmployeeInfo = {
     shopId: string;
     role: Roles;
 }
+
+export type priceRange = {
+    min: number;
+    max: number;
+}

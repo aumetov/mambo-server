@@ -23,7 +23,6 @@ constructor(@InjectModel('Products') private readonly productModel:Model<Product
     filters.sex ? query.sex = filters.sex : null
     filters.categories ? query.categories = {$in: filters.categories} : null
     filters.priceRange ? query.price = {$lte: filters.priceRange.max || 1000000000, $gte: filters.priceRange.max || 0 } : null
-    console.log(query)
 
     return await this.productModel.find(query)
   }

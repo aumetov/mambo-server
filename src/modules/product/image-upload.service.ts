@@ -10,6 +10,5 @@ interface IImageUploadService {
 @Injectable()
 export class ImageUploadService implements IImageUploadService {
   upload(files: any): void {
-    console.log(files)
   }
 }

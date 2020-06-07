@@ -12,6 +12,7 @@ export type ProductDocument = mongoose.Document & {
     categories: string[];
     shopId: string;
     productImages: string[];
+    productCode: string;
     sizes: Sizes[];
     colors: Colors[];
     sex: Gender;
@@ -50,6 +51,10 @@ export const productSchema = new mongoose.Schema({
         type: String,
         required: true
     }],
+    productCode: {
+        type: String,
+        required: false
+    },
     sizes: [{
         type: String,
         sizes: Object.keys(Sizes),

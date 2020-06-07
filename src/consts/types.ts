@@ -1,6 +1,7 @@
 import { Roles } from "./roles"
 import { Colors } from "./colors"
 import { Sizes } from "./sizes"
+import { CouponTypes } from "./coupon-types"
 
 export type orderProductType = {
     productId: string;
@@ -28,4 +29,9 @@ export class HttpResponse {
     constructor(data: any) {
       this.data = data;
     }
-  }
+}
+
+export type couponInfo = {
+    couponType: CouponTypes;
+    value: number;
+}

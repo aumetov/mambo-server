@@ -21,6 +21,10 @@ export class ProductCreateRequestDto {
     @IsOptional()
     productImages: any
 
+    @IsString()
+    @IsOptional()
+    productCode: string;
+
     @IsNumber()
     @IsNotEmpty()
     price: number
@@ -81,6 +85,10 @@ export class ProductUpdateRequestDto {
     @IsArray()
     @IsNotEmpty()
     productImages: string[]
+
+    @IsString()
+    @IsOptional()
+    productCode: string;
 
     @IsArray()
     @IsEnum(Colors)

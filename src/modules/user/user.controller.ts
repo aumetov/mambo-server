@@ -22,7 +22,7 @@ export class UserController {
         return user
     }
 
-    @Post()
+    @Post('/register')
     createOne(@Body() dto: UserCreateRequestDto) {
         return this.service.createOne(dto)
     }

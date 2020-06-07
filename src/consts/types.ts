@@ -21,3 +21,11 @@ export type priceRange = {
     min: number;
     max: number;
 }
+
+export class HttpResponse {
+    data: any;
+  
+    constructor(data: any) {
+      this.data = data;
+    }
+  }

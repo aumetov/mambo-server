@@ -7,7 +7,8 @@ interface IUserService {
     createOne(user: UserDocument): Promise<UserDocument>
     updateOne(id: string, user: UserDocument)
     getAll(filters: any): Promise<any>
-    findOneById(id: string): Promise<any>
+    findOneById(id: string): Promise<UserDocument>
+    findOneByEmail(email: string): Promise<UserDocument>
     deleteOne(id: string): Promise<void>
 }
 
@@ -25,7 +26,7 @@ export class UserService implements IUserService {
   createOne(user: UserCreateRequestDto): Promise<UserDocument> {
     return this.repository.createOne(user)
   }
-
+ 
   updateOne(id: string, user: UserUpdateRequestDto): Promise<UserDocument> {
     return this.repository.updateOne(id, user);
   }
@@ -34,7 +35,11 @@ export class UserService implements IUserService {
     return this.repository.deleteOne(id)
   }
 
-  findOneById(id: string): Promise<any | undefined> {
+  findOneById(id: string): Promise<UserDocument> {
     return this.repository.findOneById(id)
+  }
+
+  findOneByEmail(email: string): Promise<UserDocument> {
+    return this.repository.findOneByEmail(email)
   }
 }

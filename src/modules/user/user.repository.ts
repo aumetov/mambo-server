@@ -9,6 +9,7 @@ interface IUserRepository {
     updateOne(id: string, user: UserDocument): Promise<UserDocument>
     getAll(req: any): Promise<any>
     findOneById(id: string): Promise<UserDocument>
+    findOneByEmail(email: string): Promise<UserDocument>
     deleteOne(id: string): Promise<any>
 }
 
@@ -34,5 +35,9 @@ constructor(@InjectModel('Users') private readonly userModel:Model<UserDocument>
 
   async findOneById(id: string): Promise<UserDocument> {
     return await this.userModel.findOne({_id: id})
+  }
+
+  async findOneByEmail(email: string): Promise<UserDocument> {
+    return await this.userModel.findOne({email})
   }
 }

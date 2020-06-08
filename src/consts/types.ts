@@ -5,6 +5,7 @@ import { CouponTypes } from "./coupon-types"
 
 export type orderProductType = {
     productId: string;
+    productCode: string;
     shopId: string;
     title: string;
     color: Colors;

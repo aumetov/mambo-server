@@ -15,6 +15,10 @@ const orderProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    productCode: {
+        type: String,
+        required: true
+    },
     shopId: {
         type: String,
         required: true

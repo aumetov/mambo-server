@@ -9,7 +9,10 @@ export type CouponDocument = mongoose.Document & {
     shopId: string;
     sex: Gender;
     productsIds: string[];
+    couponCode: string;
     couponInfo: couponInfo;
+    startDate: string;
+    dueDate: string;
 };
 
 const couponInfoSchema = new mongoose.Schema({
@@ -46,8 +49,20 @@ export const couponSchema = new mongoose.Schema({
         type: String,
         required: false
     }],
+    couponCode: {
+        type: String,
+        required: true
+    },
     couponInfo: {
         type: couponInfoSchema,
+        required: true
+    },
+    startDate: {
+        type: Date,
+        required: true
+    },
+    dueDate: {
+        type: Date,
         required: true
     }
 }, { timestamps: true });

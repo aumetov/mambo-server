@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import { UserDocument } from './user.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserCreateRequestDto, UserUpdateRequestDto } from './user.interfaces';
+import { UserCreateRequestDto, UserUpdateRequestDto, AddItemToCartDto } from './user.interfaces';
 
 interface IUserRepository {
     createOne(user: UserDocument): Promise<UserDocument>
@@ -11,6 +11,7 @@ interface IUserRepository {
     findOneById(id: string): Promise<UserDocument>
     findOneByEmail(email: string): Promise<UserDocument>
     deleteOne(id: string): Promise<any>
+    addItemToCart(id: string, item: AddItemToCartDto): Promise<UserDocument>
 }
 
 @Injectable()
@@ -39,5 +40,11 @@ constructor(@InjectModel('Users') private readonly userModel:Model<UserDocument>
 
   async findOneByEmail(email: string): Promise<UserDocument> {
     return await this.userModel.findOne({email})
+  }
+
+  async addItemToCart(id: string, item: AddItemToCartDto): Promise<UserDocument> {
+    const user: UserDocument = await this.userModel.findById(id)
+    user.cart = [...user.cart, item]
+    return  await this.userModel.findByIdAndUpdate(id, user, {new: true});
   }
 }

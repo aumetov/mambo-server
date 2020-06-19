@@ -1,7 +1,7 @@
 import {Injectable} from '@nestjs/common'
 import { UserRepository } from './user.repository';
 import { UserDocument } from './user.entity';
-import { UserCreateRequestDto, UserUpdateRequestDto } from './user.interfaces';
+import { UserCreateRequestDto, UserUpdateRequestDto, AddItemToCartDto } from './user.interfaces';
 
 interface IUserService {
     createOne(user: UserDocument): Promise<UserDocument>
@@ -10,6 +10,7 @@ interface IUserService {
     findOneById(id: string): Promise<UserDocument>
     findOneByEmail(email: string): Promise<UserDocument>
     deleteOne(id: string): Promise<void>
+    addItemToCart(id: string, cartItemDto: AddItemToCartDto): Promise<UserDocument>
 }
 
 @Injectable()
@@ -41,5 +42,9 @@ export class UserService implements IUserService {
 
   findOneByEmail(email: string): Promise<UserDocument> {
     return this.repository.findOneByEmail(email)
+  }
+
+  addItemToCart(id: string, item: AddItemToCartDto) {
+    return this.repository.addItemToCart(id, item)
   }
 }

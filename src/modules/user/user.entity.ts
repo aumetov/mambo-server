@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { SALT_WORK_FACTOR } from '../../consts/bcrypt-salt';
-import { shopEmployeeInfo } from 'src/consts/types';
+import { shopEmployeeInfo, userCartItemType } from 'src/consts/types';
 import { Roles } from 'src/consts/roles';
 import { Sizes } from 'src/consts/sizes';
 import { Colors } from 'src/consts/colors';
@@ -13,6 +13,7 @@ export type UserDocument = mongoose.Document & {
     phoneNumber: string;
     password: string;
     shopEmployeeInfo: shopEmployeeInfo;
+    cart: userCartItemType[];
 };
 
 export const shopEmployeeInfoSchema = new mongoose.Schema({

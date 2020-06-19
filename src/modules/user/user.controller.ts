@@ -1,6 +1,6 @@
 import { Controller, Get, Body, Param, NotFoundException, Delete, Put, Post } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserCreateRequestDto, UserUpdateRequestDto } from './user.interfaces';
+import { UserCreateRequestDto, UserUpdateRequestDto, AddItemToCartDto } from './user.interfaces';
 
 @Controller('user')
 export class UserController {
@@ -20,6 +20,11 @@ export class UserController {
         throw new NotFoundException('not found')
         }
         return user
+    }
+
+    @Get('/:id/add-to-cart')
+    addItemToCart(@Param('id') id: string, @Body() dto: AddItemToCartDto) {
+        this.service.addItemToCart(id, dto)
     }
 
     @Post('/register')

@@ -14,6 +14,18 @@ export type orderProductType = {
     price: number;
 }
 
+export type userCartItemType = {
+    productId: string;
+    productCode: string;
+    shopId: string;
+    title: string;
+    color: Colors;
+    size: Sizes;
+    qty: number;
+    price: number;
+}
+
+
 export type shopEmployeeInfo = {
     shopId: string;
     role: Roles;

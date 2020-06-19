@@ -3,6 +3,8 @@ import * as bcrypt from 'bcrypt';
 import { SALT_WORK_FACTOR } from '../../consts/bcrypt-salt';
 import { shopEmployeeInfo } from 'src/consts/types';
 import { Roles } from 'src/consts/roles';
+import { Sizes } from 'src/consts/sizes';
+import { Colors } from 'src/consts/colors';
 
 export type UserDocument = mongoose.Document & {
     firstName: string;
@@ -21,6 +23,44 @@ export const shopEmployeeInfoSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: Object.keys(Roles),
+        required: true
+    }
+});
+
+const cartProductSchema = new mongoose.Schema({
+    productId: {
+        type: String,
+        required: true
+    },
+    productCode: {
+        type: String,
+        required: true
+    },
+    shopId: {
+        type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    color: {
+        type: String,
+        enum: Object.keys(Colors),
+        required: true
+    },
+    size: {
+        type: String,
+        enum: Object.keys(Sizes),
+        required: true
+    },
+    qty: {
+        type: Number,
+        required: true,
+        default: 1
+    },
+    price: {
+        type: Number,
         required: true
     }
 });
@@ -49,7 +89,11 @@ export const userSchema = new mongoose.Schema({
     shopEmployeeInfo: {
         type: shopEmployeeInfoSchema,
         required: false
-    }
+    },
+    cart: [{
+        type: cartProductSchema,
+        required: false
+    }]
 }, { timestamps: true });
 
 userSchema.pre<UserDocument>('save', function(next) {

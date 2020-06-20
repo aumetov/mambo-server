@@ -12,6 +12,7 @@ interface IUserRepository {
     findOneByEmail(email: string): Promise<UserDocument>
     deleteOne(id: string): Promise<any>
     addItemToCart(id: string, item: AddItemToCartDto): Promise<UserDocument>
+    deleteItemFromCart(id: string, productId: string): Promise<UserDocument>
 }
 
 @Injectable()
@@ -46,5 +47,11 @@ constructor(@InjectModel('Users') private readonly userModel:Model<UserDocument>
     const user: UserDocument = await this.userModel.findById(id)
     user.cart = [...user.cart, item]
     return  await this.userModel.findByIdAndUpdate(id, user, {new: true});
+  }
+
+  async deleteItemFromCart(id: string, productId: string): Promise<UserDocument> {
+    const user: UserDocument = await this.userModel.findById(id);
+    user.cart = user.cart.filter(item => item.productId === productId)
+    return await this.userModel.findByIdAndUpdate(id, user);
   }
 }

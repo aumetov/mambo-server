@@ -11,6 +11,7 @@ interface IUserService {
     findOneByEmail(email: string): Promise<UserDocument>
     deleteOne(id: string): Promise<void>
     addItemToCart(id: string, cartItemDto: AddItemToCartDto): Promise<UserDocument>
+    deleteItemFromCart(id: string, productId: string): Promise<UserDocument>
 }
 
 @Injectable()
@@ -46,5 +47,9 @@ export class UserService implements IUserService {
 
   addItemToCart(id: string, item: AddItemToCartDto) {
     return this.repository.addItemToCart(id, item)
+  }
+
+  deleteItemFromCart(id: string, productId: string) {
+    return this.repository.deleteItemFromCart(id, productId)
   }
 }

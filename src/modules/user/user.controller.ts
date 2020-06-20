@@ -27,6 +27,11 @@ export class UserController {
         this.service.addItemToCart(id, dto)
     }
 
+    @Get('/:id/delete-from-cart/:productId')
+    deleteItemFromCart(@Param('id') id: string, @Param('productId') productId: string) {
+        this.service.deleteItemFromCart(id, productId)
+    }
+
     @Post('/register')
     createOne(@Body() dto: UserCreateRequestDto) {
         return this.service.createOne(dto)

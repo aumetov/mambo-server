@@ -22,12 +22,12 @@ export class UserController {
         return user
     }
 
-    @Get('/:id/add-to-cart')
+    @Post('/:id/add-to-cart')
     addItemToCart(@Param('id') id: string, @Body() dto: AddItemToCartDto) {
         this.service.addItemToCart(id, dto)
     }
 
-    @Get('/:id/delete-from-cart/:productId')
+    @Post('/:id/delete-from-cart/:productId')
     deleteItemFromCart(@Param('id') id: string, @Param('productId') productId: string) {
         this.service.deleteItemFromCart(id, productId)
     }

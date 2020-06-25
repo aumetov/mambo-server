@@ -2,6 +2,7 @@ import { Roles } from "./roles"
 import { Colors } from "./colors"
 import { Sizes } from "./sizes"
 import { CouponTypes } from "./coupon-types"
+import { Gender } from "./gender"
 
 export type orderProductType = {
     productId: string;
@@ -47,4 +48,16 @@ export class HttpResponse {
 export type couponInfo = {
     couponType: CouponTypes;
     value: number;
+}
+
+export type coupon = {
+    categories: string[]
+    collection: string
+    shopId: string
+    sex: Gender
+    productsIds: string[]
+    couponCode: string
+    couponInfo: couponInfo
+    startDate: string
+    dueDate: string
 }

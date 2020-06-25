@@ -1,13 +1,15 @@
 import * as mongoose from 'mongoose';
-import { orderProductType } from 'src/consts/types';
+import { orderProductType, coupon } from 'src/consts/types';
 import { Sizes } from 'src/consts/sizes';
 import { Colors } from 'src/consts/colors';
+import { couponSchema } from '../coupon/coupon.entity';
 
 export type OrderDocument = mongoose.Document & {
     userId: string
     products: orderProductType[]
     address: string
     contactNumber: string
+    redeemedCoupons: coupon
 };
 
 const orderProductSchema = new mongoose.Schema({
@@ -64,7 +66,11 @@ export const orderSchema = new mongoose.Schema({
     contactNumber: {
         type: String,
         required: true
-    }
+    },
+    redeemedCoupons: [{
+        type: couponSchema,
+        required: false
+    }]
 }, { timestamps: true });
 
 export const Order = mongoose.model<OrderDocument>("Order", orderSchema);

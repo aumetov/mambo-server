@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, IsArray } from "class-validator";
-import { orderProductType } from "src/consts/types";
+import { orderProductType, coupon } from "src/consts/types";
 
 export class OrderCreateRequestDto {
     @IsString()
@@ -17,6 +17,9 @@ export class OrderCreateRequestDto {
     @IsString()
     @IsNotEmpty()
     contactNumber: string
+
+    @IsArray()
+    redeemedCoupons: coupon[]
 }
 
 export class OrderUpdateRequestDto {
@@ -35,4 +38,7 @@ export class OrderUpdateRequestDto {
     @IsString()
     @IsNotEmpty()
     contactNumber: string
+
+    @IsArray()
+    redeemedCoupons: coupon[]
 }

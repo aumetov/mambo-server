@@ -16,6 +16,10 @@ export class OrderCreateRequestDto {
 
     @IsString()
     @IsNotEmpty()
+    status: string
+
+    @IsString()
+    @IsNotEmpty()
     contactNumber: string
 
     @IsArray()
@@ -34,6 +38,10 @@ export class OrderUpdateRequestDto {
     @IsString()
     @IsNotEmpty()
     address: string
+
+    @IsString()
+    @IsNotEmpty()
+    status: string
 
     @IsString()
     @IsNotEmpty()

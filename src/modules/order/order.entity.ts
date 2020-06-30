@@ -8,6 +8,7 @@ export type OrderDocument = mongoose.Document & {
     userId: string
     products: orderProductType[]
     address: string
+    status: string
     contactNumber: string
     redeemedCoupons: coupon
 };
@@ -64,6 +65,10 @@ export const orderSchema = new mongoose.Schema({
         required: true
     },
     contactNumber: {
+        type: String,
+        required: true
+    },
+    status: {
         type: String,
         required: true
     },
